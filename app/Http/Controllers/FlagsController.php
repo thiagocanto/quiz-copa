@@ -17,7 +17,11 @@ class FlagsController extends Controller
     function show($step){
         $countries = json_decode(File::get('../resources/json/countries.json'));
 
-        $correctCountryIndex = array_rand($countries, 1);
+        do{
+            $correctCountryIndex = array_rand($countries, 1);
+            $flagStatus = get_headers('http://flags.fmcdn.net/data/flags/w580/'.strtolower($countries[$correctCountryIndex]->code).'.png');
+        }while(!preg_match('/200 OK/',$flagStatus[0]));
+
         $randomCountriesKeys = array_rand($countries, 3);
         while($this->isCountryChosen($randomCountriesKeys, $correctCountryIndex)) $randomCountriesKeys = array_rand($countries, 3);
 

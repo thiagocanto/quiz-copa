@@ -23,7 +23,9 @@
                 @if(!isset($country))
                 <a  class="btn btn-primary start-button" href="{{ route('bandeiras.show', ['step'=>1]) }}">Começar</a>
                 @else
-                <div class="flag-container">{{$country->name}}</div>
+                <div class="flag-container">
+                    <img src="//flags.fmcdn.net/data/flags/w580/{{ strtolower($country->code) }}.png" alt="">
+                </div>
                 <form method="POST" class="flag-responses" action="{{ route('bandeiras.update', ['step'=>$step]) }}">
                     @method('PUT')
                     @csrf

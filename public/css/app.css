@@ -10484,6 +10484,10 @@ body {
   text-align: center;
 }
 
+.flag-container img {
+  max-width: 80%;
+}
+
 .flag-responses {
   width: 50%;
   margin: auto;
